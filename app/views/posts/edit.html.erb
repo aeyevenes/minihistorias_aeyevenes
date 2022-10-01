@@ -1,0 +1,26 @@
+<div class="container">
+ <div class="topnav">
+  <% if user_signed_in?%>
+    <a><%= link_to current_user.email, "#", class: "btn btn--primary" %></a>
+    <a> <%= link_to 'Ingresa tu Mini Historia', new_post_path, class: "btn btn--primary" %></a>
+    <a><%= link_to "Salir", destroy_user_session_path, class: "btn btn--primary", method: :delete %></a>
+  <% else %>
+    <a><%= link_to "Ingreso Autor", new_user_session_path, class: "btn btn--primary" %></a>
+    <a><%= link_to "Registro Nuevo Autor", new_user_registration_path, class: "btn btn--primary" %></a>
+    <a><%= link_to 'Volver', posts_path, class: "btn btn--primary" %></a>
+  <% end %>
+ </div>
+<br>
+<br>
+<div class="container">
+ <h1>Editing post</h1>
+
+ <%= render "form", post: @post %>
+
+ <br>
+
+ <div>
+  <%= link_to "Ver mini historia", @post, class: "btn btn--primary" %> |
+  <%= link_to "Volver", posts_path, class: "btn btn--primary" %>
+ </div>
+</div>

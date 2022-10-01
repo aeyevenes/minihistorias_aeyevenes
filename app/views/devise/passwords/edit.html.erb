@@ -1,0 +1,39 @@
+<div class="container">
+ <div class="topnav">
+  <% if user_signed_in?%>
+    <a><%= link_to current_user.email, "#", class: "btn btn--primary" %></a>
+    <a> <%= link_to 'Ingresa tu Mini Historia', new_post_path, class: "btn btn--primary" %></a>
+    <a><%= link_to "Salir", destroy_user_session_path, class: "btn btn--primary", method: :delete %></a>
+  <% else %>
+    <a><%= link_to "Ingreso Autor", new_user_session_path, class: "btn btn--primary" %></a>
+    <a><%= link_to "Registro Nuevo Autor", new_user_registration_path, class: "btn btn--primary" %></a>
+    <a><%= link_to 'Volver', posts_path, class: "btn btn--primary" %></a>
+  <% end %>
+ </div>
+<br>
+<br>
+<h2>Change your password</h2>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= f.hidden_field :reset_password_token %>
+
+  <div class="field">
+    <%= f.label :password, "New password" %><br />
+    <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+    <% end %>
+    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirm new password" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Change my password" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

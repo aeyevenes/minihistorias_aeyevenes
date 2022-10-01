@@ -1,0 +1,32 @@
+<div class="container">
+ <div class="topnav">
+  <% if user_signed_in?%>
+    <a><%= link_to current_user.email, "#", class: "btn btn--primary" %></a>
+    <a> <%= link_to 'Ingresa tu Mini Historia', new_post_path, class: "btn btn--primary" %></a>
+    <a><%= link_to "Salir", destroy_user_session_path, class: "btn btn--primary", method: :delete %></a>
+  <% else %>
+    <a><%= link_to "Ingreso Autor", new_user_session_path, class: "btn btn--primary" %></a>
+    <a><%= link_to "Registro Nuevo Autor", new_user_registration_path, class: "btn btn--primary" %></a>
+    <a><%= link_to 'Volver', posts_path, class: "btn btn--primary" %></a>
+  <% end %>
+ </div>
+<br>
+<br>
+<h2>¿Olvidaste tu clave?</h2>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+<br>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+<br>
+<br>
+  <div class="actions">
+    <%= f.submit "Envíame instrucciones para restablecer la contraseña", class: "btn btn--primary" %>
+  </div>
+<% end %>
+<br>
+<br>
+<% render "devise/shared/links" %>

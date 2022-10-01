@@ -1,0 +1,38 @@
+<div class="container">
+ <div class="topnav">
+  <% if user_signed_in?%>
+    <a><%= link_to current_user.email, "#", class: "btn btn--primary" %></a>
+    <a> <%= link_to 'Ingresa tu Mini Historia', new_post_path, class: "btn btn--primary" %></a>
+    <a><%= link_to "Salir", destroy_user_session_path, class: "btn btn--primary", method: :delete %></a>
+  <% else %>
+    <a><%= link_to 'Volver', posts_path, class: "btn btn--primary" %></a>
+  <% end %>
+ </div>
+<br>
+<br>
+<div class="card-product">
+  <img src="https://res.cloudinary.com/aeyevenes/image/upload/v1632148717/Ale-4-MARCA_e3ko04.png" />
+  <div class="card-product-infos">
+   <h1>Bienvenidos</h1> 
+    <p><strong>Bienvenido a la primera aplicación creada por mí mismo. Soy relativamente nuevo en el mundo de los rieles (Rails) y fue un desafío usar Rails 7.0.0 para crear una aplicación con Ruby 3.0.0; Devise, Editor de Texto Enriquecido y Ransack.
+Esta aplicación fue creada para compartir historias cortas, puedes registrarte como autor y crear, actualizar y eliminar tus propias historias. Además, puedes buscar historias por su título o por tus autores favoritos.
+Espero que puedas compartir con nosotros tu creatividad.
+Para una mejor experiencia de usuario les recomiendo instalar LanguageTool.  
+Alejandro Yévenes (aeyevenes@yahoo.com) </strong></p>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<div class="card-product">
+  <img src="https://res.cloudinary.com/aeyevenes/image/upload/v1632149579/Ale-2-MarcaAgua_humo_s2wwgq.gif" />
+  <div class="card-product-infos">
+   <h1>Welcome</h1> 
+    <p><strong>Welcome to my first app built by myself. I am relative new in the rails word and was challenging to use Rails 7.0.0 and its new features to built and app with Ruby 3.0.0; Devise, Rich-Text Editor and Ransack.
+This app was built to share short stories, you can register as an author and create, update and delete your own stories. Also, you can search for stories by their title or by your favorite authors.  
+I hope you can share with us your creativity.
+I recommend installing langugeTool for a better user experience.
+Alejandro Yévenes (aeyevenes@yahoo.com)
+ </strong></p>
+  </div>
+</div>

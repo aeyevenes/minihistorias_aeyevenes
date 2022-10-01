@@ -1,0 +1,53 @@
+<div class="container">
+ <div class="topnav">
+  <% if user_signed_in?%>
+    <a><%= link_to current_user.email, "#", class: "btn btn--primary" %></a>
+    <a> <%= link_to 'Ingresa tu Mini Historia', new_post_path, class: "btn btn--primary" %></a>
+    <a><%= link_to "Salir", destroy_user_session_path, class: "btn btn--primary", method: :delete %></a>
+  <% else %>
+    <a><%= link_to 'Bienvenidos / Welcome', bienvenidos_path, class: "btn btn--primary" %></a>
+    <a><%= link_to "Ingreso Autor", new_user_session_path, class: "btn btn--primary" %></a>
+    <a><%= link_to "Registro Nuevo Autor", new_user_registration_path, class: "btn btn--primary" %></a>
+  <% end %>
+ </div>
+<br>
+<br>
+</div>
+<div class="container">
+ <div class="post">
+  <h3 id="notice"><%= notice %></h3>
+  <h1>Mini Historias</h1>
+  <br>
+  <%= search_form_for @q, remote: true do |f| %>
+  <%= f.label :title_cont, 'Buscar en el Titulo' %>
+  <%= f.search_field :title_cont %>
+  <%= f.label :title_cont, 'Busca tu autor favorito' %>
+  <%= f.search_field :author_cont %>
+  <%= f.submit %>
+<% end %>
+<br>
+  <table>
+   <table width="100%" cellspacing="2px" style="border-spacing: 10px;">
+   <thead>
+     <tr>
+       <th>Titulo</th>
+       <th>Autor</th>
+       <th colspan="3"></th>
+     </tr>
+   </thead>
+   <tbody>
+     <% @posts.each do |post| %>
+       <tr>
+         <td><%= post.title %></td>
+         <td><%= post.author %></td>
+         <td><%= link_to 'Ver', post, class: "btn btn--primary" %></td>
+         <td> <% if current_user == post.user %>
+          <%= link_to 'Editar', edit_post_path(post), class: "btn btn--primary" %>
+          <%= link_to 'Borrar', post, data: { turbo_method: :delete }, class: "btn btn--primary" %>
+         <% end %>
+        </td>
+       </tr>
+     <% end %>
+   </tbody>
+  </table>
+</div>
